@@ -1,6 +1,11 @@
 # TaskManager
 ## Job Interview task: 
 - Create an application that should work as task manager
+### Bonus:
+- Running in docker - False
+- Unit tests - False
+- User can login with password/register to the system - True
+- Flake8 linting ok - True
 
 ## Requirements:
 - Python >= 3.7

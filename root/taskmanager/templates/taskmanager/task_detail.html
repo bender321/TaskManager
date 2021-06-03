@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr>
+<center>
+<h3>{{object.title}}</h3>
+
+<hr>
+
+<h4>Description:</h4>
+
+<textarea rows="10" cols="50">
+{{object.description}}
+</textarea>
+{% if object.completed == False %}
+<p>Task state: Uncompleted</p>
+{% else %}
+<p>Task state: Completed</p>
+{% endif %}
+<h4>
+    <a href="{% url 'tasks' object.user.id %}">Return</a>
+    <a href="{% url 'task-edit' object.id%}">Edit</a>
+</h4>
+</center>
+</body>
+</html>

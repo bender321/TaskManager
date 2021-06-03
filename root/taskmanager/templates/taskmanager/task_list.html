@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href="{% url 'logout' %}">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr>
+
+<center>
+    <p><a href="{% url 'task-create' %}">Add new task</a></p>
+    <table>
+        <tr>
+            <th>Task</th>
+            <th>Open/Closed</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for item in tasks %}
+            <tr>
+                <td>{{item.title}}:</td>
+                {% if item.completed == False %}
+                    <td>Open</td>
+                {% else %}
+                    <td>------->Closed</td>
+                {% endif %}
+                <td><a href="{% url 'task-detail' item.id%}">View</a></td>
+                <td><a href="{% url 'task-edit' item.id%}">Edit</a></td>
+
+            </tr>
+        {% empty %}
+            <h3>No task to see there.</h3>
+        {% endfor %}
+    </table>
+    <p><a href="{% url 'users' %}">Return</a></p>
+</center>
+</body>
+</html>
